@@ -1,0 +1,237 @@
+
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="UTF-8">
+<title>playingornot.com</title>
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"> 
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+
+<script language="javascript">
+
+$("#home").live("pageinit", function()
+{
+	console.log("Ready home");
+});
+
+$("#playtimes").live("pageinit", function()
+{
+    console.log("Ready playtimes");
+	// submit saved avalability data to backend
+	$("input[type='radio']").bind( "change", function(event, ui) 
+	{
+		var playtimeid = event.target.id.split('_')[1];
+		var status = event.target.value;
+		console.log("playtimeid: " + playtimeid + ": " + status);
+		
+		$.post("cfc/Players.cfc?method=storePlayAvailability&returnformat=json",
+                    {playerid:1,playtimeid:playtimeid,status:status},
+                    function(res) 
+					{
+                        if(res) 
+						{
+                            console.log(res);
+                        } 
+						else
+						{
+                            //warn user of error
+                        }
+                    }
+            );
+		
+	});
+	
+});
+
+
+</script>
+
+</head>
+    
+<body>
+
+<div data-role="page" id="home" data-title="Home" data-theme="e">
+
+    <div data-role="header" data-theme="e">		
+        <h1>Are you playing? Or not?</h1>
+	</div>
+	<div data-role="content">
+    	
+
+        <p>Hello Stefan, declare your avalability.</p>
+
+        <p>The next session is on Wednesday, December 28, 2011 at 18:30 PM. Can you play?
+  
+  </p>
+        <ul data-role="listview" data-inset="true">
+		  <li><a href="#playtimes">Playtimes</a></li>
+            <li><a href="#players">Players</a></li>
+			<li><a href="#mydetails">My details</a></li>
+		</ul>		
+	</div>
+
+	
+    <div data-role="footer" data-theme="e">
+	<h6>&copy; 2011 Playingornot.com</h6>
+</div>
+</div>
+
+
+
+<div data-role="page" id="playtimes" data-theme="e">
+	<div data-role="header" data-theme="e">
+    	<a href="#home" data-rel="back" data-icon="back">Back</a>
+
+		<h1>Playtimes</h1>
+        <a href="logout.cfm" data-icon="minus">Logout</a>
+	</div>
+    
+
+	<div data-role="content">
+    		  
+            <div data-role="collapsible-set">
+                
+                <div data-role="collapsible" data-collapsed="true">
+                <h3>Wednesday, December 28, 2011, 18:30 PM</h3>  
+                <fieldset id="fieldset2" data-role="controlgroup" data-type="horizontal">
+
+                    <legend>Can you play?</legend>
+                        <input type="radio" name="play" id="play_2" value="1" />
+                        <label for="play_2">Yes</label>
+                
+                        <input type="radio" name="play" id="playno_2" value="2"  />
+                        <label for="playno_2">No</label>
+                
+                        <input type="radio" name="play" id="playmaybe_2" value="3"  />
+                        <label for="playmaybe_2">Maybe</label>
+
+                 </fieldset>
+                </div>		
+				
+                <div data-role="collapsible" data-collapsed="true">
+                <h3>Wednesday, January 4, 2012, 18:30 PM</h3>  
+                <fieldset id="fieldset3" data-role="controlgroup" data-type="horizontal">
+                    <legend>Can you play?</legend>
+                        <input type="radio" name="play" id="play_3" value="1" />
+                        <label for="play_3">Yes</label>
+
+                
+                        <input type="radio" name="play" id="playno_3" value="2"  />
+                        <label for="playno_3">No</label>
+                
+                        <input type="radio" name="play" id="playmaybe_3" value="3"  />
+                        <label for="playmaybe_3">Maybe</label>
+                 </fieldset>
+                </div>		
+				
+                <div data-role="collapsible" data-collapsed="true">
+                <h3>Wednesday, January 11, 2012, 18:30 PM</h3>  
+                <fieldset id="fieldset4" data-role="controlgroup" data-type="horizontal">
+
+                    <legend>Can you play?</legend>
+                        <input type="radio" name="play" id="play_4" value="1" />
+                        <label for="play_4">Yes</label>
+                
+                        <input type="radio" name="play" id="playno_4" value="2"  />
+                        <label for="playno_4">No</label>
+                
+                        <input type="radio" name="play" id="playmaybe_4" value="3"  />
+                        <label for="playmaybe_4">Maybe</label>
+
+                 </fieldset>
+                </div>		
+				
+                <div data-role="collapsible" data-collapsed="true">
+                <h3>Wednesday, January 18, 2012, 18:30 PM</h3>  
+                <fieldset id="fieldset5" data-role="controlgroup" data-type="horizontal">
+                    <legend>Can you play?</legend>
+                        <input type="radio" name="play" id="play_5" value="1" />
+                        <label for="play_5">Yes</label>
+
+                
+                        <input type="radio" name="play" id="playno_5" value="2"  />
+                        <label for="playno_5">No</label>
+                
+                        <input type="radio" name="play" id="playmaybe_5" value="3"  />
+                        <label for="playmaybe_5">Maybe</label>
+                 </fieldset>
+                </div>		
+				
+                <div data-role="collapsible" data-collapsed="true">
+                <h3>Wednesday, January 25, 2012, 18:30 PM</h3>  
+                <fieldset id="fieldset6" data-role="controlgroup" data-type="horizontal">
+
+                    <legend>Can you play?</legend>
+                        <input type="radio" name="play" id="play_6" value="1" />
+                        <label for="play_6">Yes</label>
+                
+                        <input type="radio" name="play" id="playno_6" value="2"  />
+                        <label for="playno_6">No</label>
+                
+                        <input type="radio" name="play" id="playmaybe_6" value="3"  />
+                        <label for="playmaybe_6">Maybe</label>
+
+                 </fieldset>
+                </div>		
+				             
+            </div>
+    </div>
+    
+	<div data-role="footer" data-theme="e">
+	<h6>&copy; 2011 Playingornot.com</h6>
+</div>
+</div>
+
+
+<div data-role="page" id="players" data-theme="e">
+
+	<div data-role="header" data-theme="e">
+    	<a href="#home" data-rel="back" data-icon="back">Back</a>
+		<h1>Players</h1>
+	</div>
+	<div data-role="content">	 
+    	<ul data-role="listview" data-inset="true">		
+		
+        	<li><a href="player.cfm?id=4" data-rel="dialog">Jason Lynch</a></li>
+        
+        	<li><a href="player.cfm?id=5" data-rel="dialog">John Pounds</a></li>
+        
+        	<li><a href="player.cfm?id=2" data-rel="dialog">Lannaye Durham</a></li>
+        
+        	<li><a href="player.cfm?id=3" data-rel="dialog">Phil Payne</a></li>
+        
+        	<li><a href="player.cfm?id=1" data-rel="dialog">Stefan Richter</a></li>
+        		
+        </ul>
+	</div>
+    
+	<div data-role="footer" data-theme="e">
+
+	<h6>&copy; 2011 Playingornot.com</h6>
+</div>
+</div>
+
+
+
+<div data-role="page" id="mydetails" data-theme="e">
+	<div data-role="header" data-theme="e">
+	    <a href="index.cfm" data-rel="back" data-icon="back">Back</a>
+		<h1>My Details</h1>
+
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+    
+	<div data-role="footer" data-theme="e">
+	<h6>&copy; 2011 Playingornot.com</h6>
+</div>
+</div>
+
+</body>
+</html>
+
