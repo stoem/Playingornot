@@ -1,0 +1,17 @@
+
+.project
+
+.settings/org.eclipse.core.resources.prefs
+
+_mmServerScripts/MMHTTPDB.cfm
+
+_mmServerScripts/SQLServer7.cfm
+
+_mmServerScripts/_notes/dwsync.xml
+
+_mmServerScripts/Application.cfm
+
+_mmServerScripts/MMSERVERINFO.cfm
+
+_mmServerScripts
+.DS_Store
