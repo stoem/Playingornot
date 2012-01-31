@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <title>playingornot.com</title>
 
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"> 
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/home.js"></script>
+
 </head>
     
 <body>
@@ -44,12 +52,12 @@
                 <label for="playmaybe_#id#">Maybe</label>
          </fieldset>
   		</cfoutput>--->
-  </p>
+
         <ul data-role="listview" data-inset="true">
 		  <li><a href="#playtimes">Playtimes</a></li>
             <li><a href="#players">Players</a></li>
 			<li><a href="#mydetails">My details</a></li>
-		</ul>		
+		</ul>
 	</div>
 	
     <cfinclude template="includes/footer.cfm">
@@ -66,9 +74,8 @@
 
 	<div data-role="content">
     
-    <div id="fullresponse">
-    <br><br>
-    </div>
+        <div id="playTimesResult">        
+        </div>
     <!---<cfinvoke 
          component="cfc.PlayTimes"
          method="getNextPlayTimes"
