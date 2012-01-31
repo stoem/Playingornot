@@ -1,10 +1,8 @@
 <cfcomponent>
 	
-    <cffunction name="getLatestPlayTime" access="public" returntype="string">
     <cffunction name="getLatestPlayTime" access="public" returntype="query">
     
 		<cfset todayDate = Now()>
-        <cfquery name="rsPlaytimes" datasource="#application.dsn#">
         <cfquery name="rsLatest" datasource="#application.dsn#">
             SELECT * FROM playtimes
             WHERE playtime > current_date
