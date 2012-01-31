@@ -18,6 +18,7 @@
      	
         <cfset application.dsn = "playingornot">
         <cfset application.base_url = "playingornot">
+        <cfset application.base_url = "http://playingornot">
         
     	<!--- Return out. --->
     	<cfreturn true />

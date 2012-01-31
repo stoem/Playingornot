@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 .project
 
 .settings/org.eclipse.core.resources.prefs
@@ -8,10 +9,27 @@ _mmServerScripts/MMHTTPDB.cfm
 _mmServerScripts/SQLServer7.cfm
 
 _mmServerScripts/_notes/dwsync.xml
+=======
+_mmServerScripts/SQLServer7.cfm
+
+_mmServerScripts/MMHTTPDB.cfm
+
+.DS_Store
+
+.project
+
+.settings/org.eclipse.core.resources.prefs
+>>>>>>> development
 
 _mmServerScripts/Application.cfm
 
 _mmServerScripts/MMSERVERINFO.cfm
 
+<<<<<<< HEAD
 _mmServerScripts
 .DS_Storesettings.xml
+=======
+_mmServerScripts/_notes/dwsync.xml
+
+settings.xml
+>>>>>>> development
