@@ -7,19 +7,20 @@ $("#home").live("pageinit", function()
 	console.log("Ready home");
 	
 	$.post("cfc/Players.cfc?method=getPlayerInfo&returnformat=json",
-			function(res) 
-			{
-				if(res) 
-				{	
-					console.log(res);
-					var user = jQuery.parseJSON(res); 
-					var username = user[0]["USERNAME"];
-					
-					$("#welcomeMsg").html( "Welcome " + username );
-				} 
-			}
-		);
+		function(res) 
+		{
+			if(res) 
+			{	
+				console.log(res);
+				var user = res[0];
+				var username = user.USERNAME;
+				
+				$("#welcomeMsg").html( "Welcome " + username );
+			} 
+		}
+	);
 });
+
 
 $("#playtimes").live("pageinit", function()
 {
@@ -47,29 +48,7 @@ $("#playtimes").live("pageinit", function()
             );
 		
 	});
-		
-
-	$.post("cfc/PlayTimes.cfc?method=getUpcomingPlayTimes&returnformat=json",
-				function(res) 
-				{
-					if(res) 
-					{	
-						console.log(res);
-						$("#fullresponse").html( res );
-						//$.mobile.hidePageLoadingMsg();
-						//$.mobile.changePage('home.cfm');
-						//window.location.href = "home.cfm";	
-					} 
-					else
-					{
-						//warn user of error
-						$.mobile.hidePageLoadingMsg();
-					}
-				}
-		);	
-
 });
-
 
 
 $( '#home' ).live( 'pageshow',function(event){
@@ -78,6 +57,46 @@ $( '#home' ).live( 'pageshow',function(event){
 
 $( '#playtimes' ).live( 'pageshow',function(event){
 	console.log("pageshow playtimes");
+	
+	$.getJSON('cfc/PlayTimes.cfc?method=getUpcomingPlayTimes&returnformat=json', function(data) {
+	  
+	  var playtimes = [];
+	
+	  $.each(data, function(key, val) {
+		playtimes.push('<li id="' + data[key].ID + '">' + data[key].PLAYTIME + '</li>');
+		console.log('<li id="' + data[key].ID + '">' + data[key].PLAYTIME + '</li>');
+	  });
+	
+	  /*$('<ul/>', {
+		'class': 'my-new-list',
+		html: items.join('')
+	  }).appendTo('body');*/
+	});
+	
+	/*$.post("cfc/PlayTimes.cfc?method=getUpcomingPlayTimes&returnformat=json",
+			function(res) 
+			{
+				if(res) 
+				{	
+					console.log(res);	
+					console.log(res[0]);				
+					var s = "<h2>Results</h2><ul>";
+					for(var i=0; i<res.length; i++) {
+						s+= "<li>"+res[i]+"</li>";
+					}
+					s+="</ul>";
+					$("#playTimesResult").html(s);
+					//$.mobile.hidePageLoadingMsg();
+					//$.mobile.changePage('home.cfm');
+					//window.location.href = "home.cfm";	
+				} 
+				else
+				{
+					//warn user of error
+					$.mobile.hidePageLoadingMsg();
+				}
+			}
+	);*/
 });
 
 $( '#players' ).live( 'pageshow',function(event){

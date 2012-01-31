@@ -1,6 +1,6 @@
 // index.js
 
-var POST_LOGIN_PAGE = "home.cfm";
+var POST_LOGIN_PAGE = "#home";
 var AUTH_URL = "cfc/Auth.cfc?method=login&returnformat=json";
 
 $("#login").live("pageinit", function()
