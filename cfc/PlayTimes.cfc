@@ -10,7 +10,6 @@
             LIMIT 1
         </cfquery>  
         
-		<cfreturn rsPlaytimes.playtime>
 		<cfreturn rsLatest>
 	</cffunction>
     
