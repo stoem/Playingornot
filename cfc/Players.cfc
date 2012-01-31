@@ -73,5 +73,17 @@
         
 		<cfreturn true>
 	</cffunction>
+                    
+    
+    <cffunction name="getPlayAvailability" access="public" returntype="query">
+    	<cfargument name="playerid" required="yes">
+        
+        <cfquery name="rsAvailability" datasource="#application.dsn#">
+            SELECT * from availability
+            WHERE playerid = #arguments.playerid#            
+        </cfquery>
+        
+		<cfreturn rsAvailability>
+	</cffunction>
     
 </cfcomponent>
