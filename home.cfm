@@ -1,64 +1,10 @@
-<cfinclude template="includes/restricted.cfm">
-<cfset userid = ListLast(getauthUser(), "|")>
-
 <!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
 <title>playingornot.com</title>
 
-
-<cfinvoke 
- component="cfc.Players"
- method="PlayerbyID"
- returnvariable="playerDetail">
-	<cfinvokeargument name="id" value="#userid#"/>
-</cfinvoke>
-
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"> 
-
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
-<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-
-<script language="javascript">
-
-$("#home").live("pageinit", function()
-{
-	console.log("Ready home");
-});
-
-$("#playtimes").live("pageinit", function()
-{
-    console.log("Ready playtimes");
-	// submit saved avalability data to backend
-	$("input[type='radio']").bind( "change", function(event, ui) 
-	{
-		var playtimeid = event.target.id.split('_')[1];
-		var status = event.target.value;
-		console.log("playtimeid: " + playtimeid + ": " + status);
-		
-		$.post("cfc/Players.cfc?method=storePlayAvailability&returnformat=json",
-                    {playerid:1,playtimeid:playtimeid,status:status},
-                    function(res) 
-					{
-                        if(res) 
-						{
-                            console.log(res);
-                        } 
-						else
-						{
-                            //warn user of error
-                        }
-                    }
-            );
-		
-	});
-	
-});
-
-</script>
-
 </head>
     
 <body>
@@ -70,30 +16,18 @@ $("#playtimes").live("pageinit", function()
         <a href="logout.cfm" data-ajax="false" data-icon="minus">Logout</a>
 	</div>
 	<div data-role="content">
+    
+    	<div id="welcomeMsg"></div>		
 
-<cfinvoke 
-    component="cfc.PlayTimes"
-    method="getLatestPlayTime"
-    returnvariable="rsLatest">
-</cfinvoke>
-
-<cfinvoke 
-    component="cfc.Players"
-    method="getPlayAvailability"
-    returnvariable="rsAvail">
-    <cfinvokeargument name="playerid" value="#userid#"/>
-</cfinvoke>
-
-
-        <p>Hello <cfoutput>#playerDetail.firstname#</cfoutput>,
+        <!---<p>Hello <cfoutput>#playerDetail.firstname#</cfoutput>,
         <cfif rsLatest.RecordCount IS 0>
         there are curently no upcoming sessions scheduled.
         <cfelse>
         declare your avalability.</p>
         <p>The next session is on <cfoutput>#DateFormat(rsLatest.playtime, "full")# at #LSTimeFormat(rsLatest.playtime, "H:M tt")#.</cfoutput>
-        </cfif>
+        </cfif>--->
         
-        <cfoutput query="rsLatest">
+        <!---<cfoutput query="rsLatest">
         <cfif rsLatest.id EQ rsAvail.playtimeid>
         	found a match, status is <cfoutput>#rsAvail.status#</cfoutput><br>
             <cfset status = rsAvail.status>
@@ -109,7 +43,7 @@ $("#playtimes").live("pageinit", function()
                 <input type="radio" name="play" id="playmaybe_#id#" value="3" <cfif status IS 3>checked</cfif> />
                 <label for="playmaybe_#id#">Maybe</label>
          </fieldset>
-  		</cfoutput>
+  		</cfoutput>--->
   </p>
         <ul data-role="listview" data-inset="true">
 		  <li><a href="#playtimes">Playtimes</a></li>
@@ -131,7 +65,11 @@ $("#playtimes").live("pageinit", function()
 	</div>
 
 	<div data-role="content">
-    <cfinvoke 
+    
+    <div id="fullresponse">
+    <br><br>
+    </div>
+    <!---<cfinvoke 
          component="cfc.PlayTimes"
          method="getNextPlayTimes"
          returnvariable="playTimes">
@@ -153,7 +91,7 @@ $("#playtimes").live("pageinit", function()
                  </fieldset>
                 </div>		
 				</cfoutput>             
-            </div>
+            </div>--->
     </div>
     
 	<cfinclude template="includes/footer.cfm">

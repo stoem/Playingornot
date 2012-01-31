@@ -14,7 +14,7 @@
 	</cffunction>
     
     
-    <cffunction name="getNextPlayTimes" access="public" returntype="query">
+    <cffunction name="getUpcomingPlayTimes" access="remote" returntype="query">
     
         <cfquery name="rsPlaytimes" datasource="#application.dsn#">
             SELECT * FROM playtimes            
